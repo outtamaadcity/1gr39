@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="calendar">
+        <!-- Calendar content will go here. -->
+    </div>
+    
+    <div id="blog">
+        <h2>Class Blog</h2>
+        <textarea id="postInput" placeholder="Write a new post..."></textarea>
+        <button onclick="addPost()">Add Post</button>
+        <div id="postsList"></div>
+    </div>
+
+    <div id="lunchMenu">
+        <h2>Lunch Menu</h2>
+        <div id="menuList"></div>
+    </div>
+
+    <script>
+        function addPost() {
+            const postInput = document.getElementById('postInput').value;
+
+            fetch('/api/addPost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ post: postInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    renderPosts();
+                }
+            });
+        }
+
+        function renderPosts() {
+            fetch('/api/getPosts')
+            .then(response => response.json())
+            .then(posts => {
+                const postsList = document.getElementById('postsList');
+                postsList.innerHTML = "";
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.textContent = post;
+                    postsList.appendChild(postElement);
+                });
+            });
+        }
+
+        window.onload = renderPosts;
+    </script>
+</body>
+</html>
