@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Calendar Section -->
+        <section id="calendar">
+            <h2>Class Calendar</h2>
+            <input type="date" id="dateInput">
+            <textarea id="eventInput" placeholder="Enter event details"></textarea>
+            <button onclick="addEvent()">Add Event</button>
+            <div id="eventsList"></div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2>Class Blog</h2>
+            <textarea id="postInput" placeholder="Write a post"></textarea>
+            <button onclick="addPost()">Post</button>
+            <div id="postsList"></div>
+        </section>
+
+        <!-- Lunch Menu Section -->
+        <section id="lunchMenu">
+            <h2>Lunch Menu</h2>
+            <div id="menuList"></div>
+        </section>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
